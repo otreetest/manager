@@ -242,8 +242,12 @@ class Survey(Page):
             errors['misreport_reason'] = 'This field is required'
             
         return errors if errors else None 
-
-
+    
+class Code(Page):
+    def vars_for_template(self):
+        return {
+            'completion_code': 'CIEYNDAF'
+        }
 
 page_sequence = [
     Briefing,
@@ -253,5 +257,6 @@ page_sequence = [
     MisreportingRule,
     State,
     Result,
-    Survey
+    Survey,
+    Code
 ]
