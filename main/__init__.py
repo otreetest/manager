@@ -178,7 +178,9 @@ class Briefing(Page):
     def app_after_this_page(player: Player, upcoming_apps):
         if not player.consent:
             return 'end'
-
+        
+class Intro(Page):
+    pass
 
 class IQTest(Page):
     timeout_seconds = 180
@@ -245,6 +247,7 @@ class Survey(Page):
 
 page_sequence = [
     Briefing,
+    Intro,
     IQTest,
     StatePrev,
     MisreportingRule,
