@@ -1,0 +1,99 @@
+{{ block title }}
+Questions
+{{ endblock }}
+{{ block content }}
+<style>
+    .question-list {
+        list-style: none;
+    }
+    img{
+        width: 12rem;
+    }
+</style>
+
+<ul class="question-list">
+    <li>{{ formfield "briefing_1" }}</li>
+    <li>{{ formfield "briefing_2" }}</li>
+    <li>{{ formfield "briefing_3" }}</li>
+    <li>{{ formfield "briefing_4" }}</li>
+    <li>{{ formfield "briefing_5" }}</li>
+    <li>{{ formfield "briefing_6" }}</li>
+    <li>{{ formfield "briefing_7" }}</li>
+    <li>{{ formfield "briefing_8" }}</li>
+    <li>{{ formfield "briefing_9" }}</li>
+    <li>{{ formfield "briefing_10" }}</li>
+    <li>{{ formfield "briefing_11" }}</li>
+    <li>{{ formfield "briefing_12" }}</li>
+    <li>{{ formfield "briefing_13" }}</li>
+    <li>{{ formfield "briefing_14" }}</li>
+    <li>{{ formfield "briefing_15" }}</li>
+    <li>{{ formfield "briefing_16" }}</li>
+    <li>{{ formfield "briefing_17" }}</li>
+    <li>{{ formfield "briefing_18" }}</li>
+    <li>{{ formfield "briefing_19" }}</li>
+    <li>{{ formfield "briefing_20" }}</li>
+</ul>
+<div style="display: flex;justify-content: center;gap:1rem">
+    <button class="btn btn-outline-primary" id="btn-prev">Prev</button>
+    <button class="btn btn-outline-primary" id="btn-next">Next</button>
+    <button class="otree-btn-next btn btn-primary" id="btn-submit" style="display: none;">Submit</button>
+</div>
+<script>
+    $(() => {
+        const $questions = $('.question-list li');
+        const $submitButton = $('#btn-submit');
+        const $prevButton = $('#btn-prev');
+        const $nextButton = $('#btn-next');
+        let currentIndex = 0;
+        $questions.hide().first().show();
+
+        const toggleSubmitButton = () => {
+            if (currentIndex === $questions.length - 1) {
+                $submitButton.show();
+            } else {
+                $submitButton.hide();
+            }
+        };
+
+        const toggleNavigationButtons = () => {
+            if (currentIndex === 0) {
+                $prevButton.hide();
+            } else {
+                $prevButton.show();
+            }
+            if (currentIndex === $questions.length - 1) {
+                $nextButton.hide();
+            } else {
+                $nextButton.show();
+            }
+        };
+
+        // 初始化按钮的显示状态
+        toggleSubmitButton();
+        toggleNavigationButtons();
+
+        $nextButton.click((e) => {
+            e.preventDefault();
+            if (currentIndex < $questions.length - 1) {
+                $questions.eq(currentIndex).hide();
+                currentIndex++;
+                $questions.eq(currentIndex).show();
+                toggleSubmitButton();
+                toggleNavigationButtons();
+            }
+        });
+
+        $prevButton.click((e) => {
+            e.preventDefault();
+            if (currentIndex > 0) {
+                $questions.eq(currentIndex).hide();
+                currentIndex--;
+                $questions.eq(currentIndex).show();
+                toggleSubmitButton();
+                toggleNavigationButtons();
+            }
+        });
+    });
+</script>
+
+{{ endblock }}
