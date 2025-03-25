@@ -1,12 +1,13 @@
 {{ block title }}
 Questions
 {{ endblock }}
+
 {{ block content }}
 <style>
     .question-list {
         list-style: none;
     }
-    img{
+    img {
         width: 12rem;
     }
 </style>
@@ -33,11 +34,13 @@ Questions
     <li>{{ formfield "briefing_19" }}</li>
     <li>{{ formfield "briefing_20" }}</li>
 </ul>
+
 <div style="display: flex;justify-content: center;gap:1rem">
     <button class="btn btn-outline-primary" id="btn-prev">Prev</button>
     <button class="btn btn-outline-primary" id="btn-next">Next</button>
     <button class="otree-btn-next btn btn-primary" id="btn-submit" style="display: none;">Submit</button>
 </div>
+
 <script>
     $(() => {
         const $questions = $('.question-list li');
@@ -56,24 +59,38 @@ Questions
         };
 
         const toggleNavigationButtons = () => {
-            if (currentIndex === 0) {
-                $prevButton.hide();
-            } else {
-                $prevButton.show();
-            }
-            if (currentIndex === $questions.length - 1) {
-                $nextButton.hide();
-            } else {
-                $nextButton.show();
-            }
+            $prevButton.toggle(currentIndex > 0);
+            $nextButton.toggle(currentIndex < $questions.length - 1);
         };
 
-        // 初始化按钮的显示状态
-        toggleSubmitButton();
-        toggleNavigationButtons();
+        const validateCurrentQuestion = () => {
+            const $currentQuestion = $questions.eq(currentIndex);
+            const $currentField = $currentQuestion.find('input:checked, select, textarea');
+        
+            // Remove any existing error messages
+            $currentQuestion.find('.error-message').remove();
+        
+            if ($currentField.length === 0) {
+            // Add error message
+                const $errorMessage = $('<div class="error-message text-danger" style="color: red; margin-top: 5px;">Please answer this question</div>');
+                $currentQuestion.append($errorMessage);
+                return false;
+            }
+        
+            return true;
+        };
 
         $nextButton.click((e) => {
             e.preventDefault();
+            
+            if (!validateCurrentQuestion()) {
+                // Use oTree's error handling
+                const currentField = $questions.eq(currentIndex).find('input, select, textarea');
+                window.otree.form.inputsWithErrors.push(currentField[0]);
+                window.otree.form.showErrors();
+                return;
+            }
+
             if (currentIndex < $questions.length - 1) {
                 $questions.eq(currentIndex).hide();
                 currentIndex++;
@@ -93,7 +110,10 @@ Questions
                 toggleNavigationButtons();
             }
         });
+
+        // Initialize button states
+        toggleSubmitButton();
+        toggleNavigationButtons();
     });
 </script>
-
 {{ endblock }}

@@ -8,7 +8,7 @@ Your app description
 
 
 
-briefing_answers = [4, 2, 6, 3, 5, 6, 4, 3, 4, 5, 3, 7, 5, 1, 3, 7, 8, 4, 2, 2]
+briefing_answers = ['A', 'C', 'B', 'D', 'B', 'A', 'C', 'B', 'A', 'E', 'B', 'D', 'A', 'B', 'B', 'E', 'C', 'D', 'C', 'B']
 
 
 class C(BaseConstants):
@@ -32,125 +32,144 @@ class Player(BasePlayer):
         max=20
     )
 
-    briefing_correct_amount = models.IntegerField()
+    briefing_correct_amount = models.CharField()
     # briefing_1~20
-    briefing_1 = models.IntegerField(
-        label="1、<img src='/static/img/briefing/1.png' style='width: 300px; max-width: 100%;'>",
-        choices=range(1, 7),
+    briefing_1 = models.CharField(
+        label="1、<img src='/static/img/briefing/1.png' style='width: 450px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
-    briefing_2 = models.IntegerField(
-        label="2、<img src='/static/img/briefing/2.png' style='width: 300px; max-width: 100%;'>",
-        choices=range(1, 7),
+
+    briefing_2 = models.CharField(
+        label="2、<img src='/static/img/briefing/2.png' style='width: 450px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
-    briefing_3 = models.IntegerField(
-        label="3、<img src='/static/img/briefing/3.png' style='width: 300px; max-width: 100%;'>",
-        choices=range(1, 7),
+
+    briefing_3 = models.CharField(
+        label="3、<img src='/static/img/briefing/3.png' style='width: 450px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
-    briefing_4 = models.IntegerField(
-        label="4、<img src='/static/img/briefing/4.png' style='width: 300px; max-width: 100%;'>",
-        choices=range(1, 7),
+
+    briefing_4 = models.CharField(
+        label="4、<img src='/static/img/briefing/4.png' style='width: 500px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
-    briefing_5 = models.IntegerField(
-        label="5、<img src='/static/img/briefing/5.png' style='width: 300px; max-width: 100%;'>",
-        choices=range(1, 7),
+
+    briefing_5 = models.CharField(
+        label="5、<img src='/static/img/briefing/5.png' style='width: 500px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
-    briefing_6 = models.IntegerField(
-        label="6、<img src='/static/img/briefing/6.png' style='width: 300px; max-width: 100%;'>",
-        choices=range(1, 7),
+
+    briefing_6 = models.CharField(
+        label="6、<img src='/static/img/briefing/6.png' style='width: 450px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
-    briefing_7 = models.IntegerField(
-        label="7、<img src='/static/img/briefing/7.png' style='width: 300px; max-width: 100%;'>",
-        choices=range(1, 7),
+
+    briefing_7 = models.CharField(
+        label="7、<img src='/static/img/briefing/7.png' style='width: 500px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
-    briefing_8 = models.IntegerField(
-        label="8、<img src='/static/img/briefing/8.png' style='width: 300px; max-width: 100%;'>",
-        choices=range(1, 7),
+
+    briefing_8 = models.CharField(
+        label="8、<img src='/static/img/briefing/8.png' style='width: 450px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
-    briefing_9 = models.IntegerField(
-        label="9、<img src='/static/img/briefing/9.png' style='width: 300px; max-width: 100%;'>",
-        choices=range(1, 7),
+
+    briefing_9 = models.CharField(
+        label="9、<img src='/static/img/briefing/9.png' style='width: 500px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
-    briefing_10 = models.IntegerField(
-        label="10、<img src='/static/img/briefing/10.png' style='width: 300px; max-width: 100%;'>",
-        choices=range(1, 7),
+
+    briefing_10 = models.CharField(
+        label="10、<img src='/static/img/briefing/10.png' style='width: 500px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
-    briefing_11 = models.IntegerField(
-        label="11、<img src='/static/img/briefing/11.png' style='width: 300px; max-width: 100%;'>",
-        choices=range(1, 9),
+
+    briefing_11 = models.CharField(
+        label="11、<img src='/static/img/briefing/11.png' style='width: 500px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
-    briefing_12 = models.IntegerField(
-        label="12、<img src='/static/img/briefing/12.png' style='width: 300px; max-width: 100%;'>",
-        choices=range(1, 9),
+
+    briefing_12 = models.CharField(
+        label="12、<img src='/static/img/briefing/12.png' style='width: 500px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
-    briefing_13 = models.IntegerField(
-        label="13、<img src='/static/img/briefing/13.png' style='width: 300px; max-width: 100%;'>",
-        choices=range(1, 9),
+
+    briefing_13 = models.CharField(
+        label="13、<img src='/static/img/briefing/13.png' style='width: 500px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
-    briefing_14 = models.IntegerField(
-        label="14、<img src='/static/img/briefing/14.png' style='width: 300px; max-width: 100%;'>",
-        choices=range(1, 9),
+
+    briefing_14 = models.CharField(
+        label="14、<img src='/static/img/briefing/14.png' style='width: 500px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
-    briefing_15 = models.IntegerField(
-        label="15、<img src='/static/img/briefing/15.png' style='width: 300px; max-width: 100%;'>",
-        choices=range(1, 9),
+
+    briefing_15 = models.CharField(
+        label="15、<img src='/static/img/briefing/15.png' style='width: 500px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
-    briefing_16 = models.IntegerField(
-        label="16、<img src='/static/img/briefing/16.png' style='width: 300px; max-width: 100%;'>",
-        choices=range(1, 9),
+
+    briefing_16 = models.CharField(
+        label="16、<img src='/static/img/briefing/16.png' style='width: 500px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
-    briefing_17 = models.IntegerField(
-        label="17、<img src='/static/img/briefing/17.png' style='width: 300px; max-width: 100%;'>",
-        choices=range(1, 9),
+
+    briefing_17 = models.CharField(
+        label="17、<img src='/static/img/briefing/17.png' style='width: 500px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
-    briefing_18 = models.IntegerField(
-        label="18、<img src='/static/img/briefing/18.png' style='width: 300px; max-width: 100%;'>",
-        choices=range(1, 9),
+
+    briefing_18 = models.CharField(
+        label="18、<img src='/static/img/briefing/18.png' style='width: 500px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
-    briefing_19 = models.IntegerField(
-        label="19、<img src='/static/img/briefing/19.png' style='width: 300px; max-width: 100%;'>",
-        choices=range(1, 9),
+
+    briefing_19 = models.CharField(
+        label="19、<img src='/static/img/briefing/19.png' style='width: 500px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
-    briefing_20 = models.IntegerField(
-        label="20、<img src='/static/img/briefing/20.png' style='width: 300px; max-width: 100%;'>",
-        choices=range(1, 9),
+
+    briefing_20 = models.CharField(
+        label="20、<img src='/static/img/briefing/20.png' style='width: 500px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
@@ -197,9 +216,15 @@ class IQTest(Page):
         for i, field in enumerate(IQTest.form_fields):
             if briefing_answers[i] == player.field_maybe_none(field):
                 briefing_correct_amount += 1
-        player.briefing_correct_amount = briefing_correct_amount
+        player.briefing_correct_amount = str(briefing_correct_amount)
 
-
+    @staticmethod
+    def error_message(player: Player, values):
+        errors = {}
+        for field in IQTest.form_fields:
+            if values.get(field) is None:
+                errors[field] = 'Please answer this question'
+        return errors if errors else None
 
 class StatePrev(Page):
     pass
