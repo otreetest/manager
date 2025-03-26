@@ -8,7 +8,7 @@ Your app description
 
 
 
-briefing_answers = ['A', 'C', 'B', 'D', 'B', 'A', 'C', 'B', 'A', 'E', 'B', 'D', 'A', 'B', 'B', 'E', 'C', 'D', 'C', 'B']
+briefing_answers = ['D', 'B', 'B', 'B', 'D', 'D', 'C', 'B', 'B', 'C', 'C', 'B', 'B', 'C', 'A', 'B', 'C', 'D', 'A', 'A']
 
 
 class C(BaseConstants):
@@ -35,141 +35,141 @@ class Player(BasePlayer):
     briefing_correct_amount = models.CharField()
     # briefing_1~20
     briefing_1 = models.CharField(
-        label="1、<img src='/static/img/briefing/1.png' style='width: 450px; max-width: 100%;'>",
-        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
+        label="1、<img src='/static/img/briefing/1.png' style='width: 480px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_2 = models.CharField(
-        label="2、<img src='/static/img/briefing/2.png' style='width: 450px; max-width: 100%;'>",
-        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
+        label="2、<img src='/static/img/briefing/2.png' style='width: 480px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_3 = models.CharField(
-        label="3、<img src='/static/img/briefing/3.png' style='width: 450px; max-width: 100%;'>",
-        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
+        label="3、<img src='/static/img/briefing/3.png' style='width: 350px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_4 = models.CharField(
-        label="4、<img src='/static/img/briefing/4.png' style='width: 500px; max-width: 100%;'>",
-        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
+        label="4、<img src='/static/img/briefing/4.png' style='width: 350px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_5 = models.CharField(
-        label="5、<img src='/static/img/briefing/5.png' style='width: 500px; max-width: 100%;'>",
-        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
+        label="5、<img src='/static/img/briefing/5.png' style='width: 330px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_6 = models.CharField(
-        label="6、<img src='/static/img/briefing/6.png' style='width: 450px; max-width: 100%;'>",
-        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
+        label="6、<img src='/static/img/briefing/6.png' style='width: 350px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_7 = models.CharField(
-        label="7、<img src='/static/img/briefing/7.png' style='width: 500px; max-width: 100%;'>",
-        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
+        label="7、<img src='/static/img/briefing/7.png' style='width: 400px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_8 = models.CharField(
         label="8、<img src='/static/img/briefing/8.png' style='width: 450px; max-width: 100%;'>",
-        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_9 = models.CharField(
-        label="9、<img src='/static/img/briefing/9.png' style='width: 500px; max-width: 100%;'>",
-        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
+        label="9、<img src='/static/img/briefing/9.png' style='width: 450px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_10 = models.CharField(
-        label="10、<img src='/static/img/briefing/10.png' style='width: 500px; max-width: 100%;'>",
-        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
+        label="10、<img src='/static/img/briefing/10.png' style='width: 510px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_11 = models.CharField(
-        label="11、<img src='/static/img/briefing/11.png' style='width: 500px; max-width: 100%;'>",
-        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
+        label="11、<img src='/static/img/briefing/11.png' style='width: 550px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_12 = models.CharField(
-        label="12、<img src='/static/img/briefing/12.png' style='width: 500px; max-width: 100%;'>",
-        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
+        label="12、<img src='/static/img/briefing/12.png' style='width: 470px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_13 = models.CharField(
-        label="13、<img src='/static/img/briefing/13.png' style='width: 500px; max-width: 100%;'>",
-        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
+        label="13、<img src='/static/img/briefing/13.png' style='width: 540px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_14 = models.CharField(
-        label="14、<img src='/static/img/briefing/14.png' style='width: 500px; max-width: 100%;'>",
-        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
+        label="14、<img src='/static/img/briefing/14.png' style='width: 450px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_15 = models.CharField(
         label="15、<img src='/static/img/briefing/15.png' style='width: 500px; max-width: 100%;'>",
-        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_16 = models.CharField(
-        label="16、<img src='/static/img/briefing/16.png' style='width: 500px; max-width: 100%;'>",
-        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
+        label="16、<img src='/static/img/briefing/16.png' style='width: 380px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_17 = models.CharField(
-        label="17、<img src='/static/img/briefing/17.png' style='width: 500px; max-width: 100%;'>",
-        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
+        label="17、<img src='/static/img/briefing/17.png' style='width: 550px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_18 = models.CharField(
-        label="18、<img src='/static/img/briefing/18.png' style='width: 500px; max-width: 100%;'>",
-        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
+        label="18、<img src='/static/img/briefing/18.png' style='width: 520px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_19 = models.CharField(
-        label="19、<img src='/static/img/briefing/19.png' style='width: 500px; max-width: 100%;'>",
-        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
+        label="19、<img src='/static/img/briefing/19.png' style='width: 350px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_20 = models.CharField(
-        label="20、<img src='/static/img/briefing/20.png' style='width: 500px; max-width: 100%;'>",
-        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')],
+        label="20、<img src='/static/img/briefing/20.png' style='width: 520px; max-width: 100%;'>",
+        choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')],
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
