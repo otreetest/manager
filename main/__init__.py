@@ -7,7 +7,8 @@ Your app description
 """
 
 # Keep answers as integers
-briefing_answers = [3,1,2,6,6,3,6,7,6,4,5,6,5,1,7,1,6,5,3,4]
+# For questions with multiple correct answers, use lists of integers
+briefing_answers = [[2,3],[1,5],2,6,6,3,6,7,6,4,5,6,5,1,7,1,6,5,3,4]
 
 
 class C(BaseConstants):
@@ -218,7 +219,13 @@ class IQTest(Page):
                 # Convert string to integer for comparison
                 try:
                     player_answer_int = int(player_answer)
-                    if briefing_answers[i] == player_answer_int:
+                    # Check if the answer is correct
+                    # If the correct answer is a list (multiple answers accepted), check if player's answer is in the list
+                    if isinstance(briefing_answers[i], list):
+                        if player_answer_int in briefing_answers[i]:
+                            briefing_correct_amount += 1
+                    # Otherwise, do a direct comparison
+                    elif briefing_answers[i] == player_answer_int:
                         briefing_correct_amount += 1
                 except (ValueError, TypeError):
                     # Skip this answer if conversion fails
