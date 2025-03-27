@@ -6,33 +6,76 @@ Questions
 <style>
     .question-list {
         list-style: none;
+        padding-left: 0;
     }
     img {
         width: 12rem;
     }
+    /* New styling for options */
+    .options-container {
+        margin-top: 10px;
+    }
+    .options-row {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        margin-bottom: 5px;
+    }
+    .option-cell {
+        margin-right: 30px; /* Space between options */
+        white-space: nowrap; /* Keep option and label together */
+    }
 </style>
 
+<!-- Remove all previous template code and just manually render the choices -->
 <ul class="question-list">
-    <li>{{ formfield "briefing_1" }}</li>
-    <li>{{ formfield "briefing_2" }}</li>
-    <li>{{ formfield "briefing_3" }}</li>
-    <li>{{ formfield "briefing_4" }}</li>
-    <li>{{ formfield "briefing_5" }}</li>
-    <li>{{ formfield "briefing_6" }}</li>
-    <li>{{ formfield "briefing_7" }}</li>
-    <li>{{ formfield "briefing_8" }}</li>
-    <li>{{ formfield "briefing_9" }}</li>
-    <li>{{ formfield "briefing_10" }}</li>
-    <li>{{ formfield "briefing_11" }}</li>
-    <li>{{ formfield "briefing_12" }}</li>
-    <li>{{ formfield "briefing_13" }}</li>
-    <li>{{ formfield "briefing_14" }}</li>
-    <li>{{ formfield "briefing_15" }}</li>
-    <li>{{ formfield "briefing_16" }}</li>
-    <li>{{ formfield "briefing_17" }}</li>
-    <li>{{ formfield "briefing_18" }}</li>
-    <li>{{ formfield "briefing_19" }}</li>
-    <li>{{ formfield "briefing_20" }}</li>
+    <li>
+        <div class="form-group">
+            <label class="control-label">Question 1<br><br><img src='/static/img/briefing/1.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/1.1.png' style='width: 240px; max-width: 100%;'><br><br></label>
+            
+            <div class="options-container">
+                <div class="options-row">
+                    <!-- First row - no fixed width, true left alignment -->
+                    <div class="option-cell">
+                        <input type="radio" id="id_briefing_1_0" name="briefing_1" value="1">
+                        <label for="id_briefing_1_0">1</label>
+                    </div>
+                    <div class="option-cell">
+                        <input type="radio" id="id_briefing_1_1" name="briefing_1" value="2">
+                        <label for="id_briefing_1_1">2</label>
+                    </div>
+                    <div class="option-cell">
+                        <input type="radio" id="id_briefing_1_2" name="briefing_1" value="3">
+                        <label for="id_briefing_1_2">3</label>
+                    </div>
+                    <div class="option-cell">
+                        <input type="radio" id="id_briefing_1_3" name="briefing_1" value="4">
+                        <label for="id_briefing_1_3">4</label>
+                    </div>
+                </div>
+                <div class="options-row">
+                    <!-- Second row - no fixed width, true left alignment -->
+                    <div class="option-cell">
+                        <input type="radio" id="id_briefing_1_4" name="briefing_1" value="5">
+                        <label for="id_briefing_1_4">5</label>
+                    </div>
+                    <div class="option-cell">
+                        <input type="radio" id="id_briefing_1_5" name="briefing_1" value="6">
+                        <label for="id_briefing_1_5">6</label>
+                    </div>
+                    <div class="option-cell">
+                        <input type="radio" id="id_briefing_1_6" name="briefing_1" value="7">
+                        <label for="id_briefing_1_6">7</label>
+                    </div>
+                    <div class="option-cell">
+                        <input type="radio" id="id_briefing_1_7" name="briefing_1" value="8">
+                        <label for="id_briefing_1_7">8</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+    <!-- Add more questions using the same pattern -->
 </ul>
 
 <div style="display: flex;justify-content: center;gap:1rem">
@@ -42,127 +85,168 @@ Questions
 </div>
 
 <script>
-    $(() => {
+    $(document).ready(function() {
+        // Generate remaining questions using the same layout pattern
+        const questions = [
+            "briefing_2", "briefing_3", "briefing_4", "briefing_5", 
+            "briefing_6", "briefing_7", "briefing_8", "briefing_9", "briefing_10",
+            "briefing_11", "briefing_12", "briefing_13", "briefing_14", "briefing_15",
+            "briefing_16", "briefing_17", "briefing_18", "briefing_19", "briefing_20"
+        ];
+        
+        // Generate HTML for each question
+        questions.forEach((field, index) => {
+            const num = index + 2; // Start from question 2
+            
+            let html = `
+            <li style="display: none;">
+                <div class="form-group">
+                    <label class="control-label">Question ${num}<br><br><img src='/static/img/briefing/${num}.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/${num}.1.png' style='width: 240px; max-width: 100%;'><br><br></label>
+                    
+                    <div class="options-container">
+                        <div class="options-row">
+                            <!-- First row -->
+                            <div class="option-cell">
+                                <input type="radio" id="id_${field}_0" name="${field}" value="1">
+                                <label for="id_${field}_0">1</label>
+                            </div>
+                            <div class="option-cell">
+                                <input type="radio" id="id_${field}_1" name="${field}" value="2">
+                                <label for="id_${field}_1">2</label>
+                            </div>
+                            <div class="option-cell">
+                                <input type="radio" id="id_${field}_2" name="${field}" value="3">
+                                <label for="id_${field}_2">3</label>
+                            </div>
+                            <div class="option-cell">
+                                <input type="radio" id="id_${field}_3" name="${field}" value="4">
+                                <label for="id_${field}_3">4</label>
+                            </div>
+                        </div>
+                        <div class="options-row">
+                            <!-- Second row -->
+                            <div class="option-cell">
+                                <input type="radio" id="id_${field}_4" name="${field}" value="5">
+                                <label for="id_${field}_4">5</label>
+                            </div>
+                            <div class="option-cell">
+                                <input type="radio" id="id_${field}_5" name="${field}" value="6">
+                                <label for="id_${field}_5">6</label>
+                            </div>
+                            <div class="option-cell">
+                                <input type="radio" id="id_${field}_6" name="${field}" value="7">
+                                <label for="id_${field}_6">7</label>
+                            </div>
+                            <div class="option-cell">
+                                <input type="radio" id="id_${field}_7" name="${field}" value="8">
+                                <label for="id_${field}_7">8</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>`;
+            
+            $('.question-list').append(html);
+        });
+        
+        // Navigation functionality
         const $questions = $('.question-list li');
         const $submitButton = $('#btn-submit');
         const $prevButton = $('#btn-prev');
         const $nextButton = $('#btn-next');
         let currentIndex = 0;
-        $questions.hide().first().show();
-
-        // 超时倒计时相关 - 不显示UI
+        
+        // Timeout variables
         let timeLeft = 180;
         
-        // 获取所有表单字段名
+        // Form fields array
         const formFields = [
             'briefing_1', 'briefing_2', 'briefing_3', 'briefing_4', 'briefing_5', 
             'briefing_6', 'briefing_7', 'briefing_8', 'briefing_9', 'briefing_10', 
             'briefing_11', 'briefing_12', 'briefing_13', 'briefing_14', 'briefing_15', 
             'briefing_16', 'briefing_17', 'briefing_18', 'briefing_19', 'briefing_20'
         ];
-
-        const toggleSubmitButton = () => {
-            if (currentIndex === $questions.length - 1) {
-                $submitButton.show();
-            } else {
-                $submitButton.hide();
-            }
-        };
-
-        const toggleNavigationButtons = () => {
+        
+        function updateButtons() {
+            $submitButton.toggle(currentIndex === $questions.length - 1);
             $prevButton.toggle(currentIndex > 0);
             $nextButton.toggle(currentIndex < $questions.length - 1);
-        };
-
-        const validateCurrentQuestion = () => {
-            const $currentQuestion = $questions.eq(currentIndex);
-            const $currentField = $currentQuestion.find('input:checked, select, textarea');
+        }
         
+        function validateCurrentQuestion() {
+            const $currentQuestion = $questions.eq(currentIndex);
+            const fieldName = formFields[currentIndex];
+            const answered = $(`input[name="${fieldName}"]:checked`).length > 0;
+            
             // Remove any existing error messages
             $currentQuestion.find('.error-message').remove();
-        
-            if ($currentField.length === 0) {
-                // Add error message
-                const $errorMessage = $('<div class="error-message text-danger" style="color: red; margin-top: 5px;">Please answer this question</div>');
+            
+            if (!answered) {
+                const $errorMessage = $('<div class="error-message text-danger" style="margin-top: 10px;">Please select an answer before proceeding</div>');
                 $currentQuestion.append($errorMessage);
                 return false;
             }
-        
+            
             return true;
-        };
-
-        // 自动选择未回答题目的选项8
-        const autoFillUnanswered = () => {
-            formFields.forEach((field, index) => {
-                const $fieldInputs = $(`input[name="${field}"]:checked`);
-                if ($fieldInputs.length === 0) {
-                    // 如果未选择，自动选择选项8
+        }
+        
+        function autoFillUnanswered() {
+            formFields.forEach((field) => {
+                if ($(`input[name="${field}"]:checked`).length === 0) {
                     $(`input[name="${field}"][value="8"]`).prop('checked', true);
                 }
             });
-        };
-
-        // 提交表单
-        const submitForm = () => {
-            // 先自动填充未答题
+        }
+        
+        function submitForm() {
             autoFillUnanswered();
-            // 然后提交
             $('form').submit();
-        };
-
-        $nextButton.click((e) => {
+        }
+        
+        $nextButton.click(function(e) {
             e.preventDefault();
             
             if (!validateCurrentQuestion()) {
-                // Use oTree's error handling
-                const currentField = $questions.eq(currentIndex).find('input, select, textarea');
-                window.otree.form.inputsWithErrors.push(currentField[0]);
-                window.otree.form.showErrors();
                 return;
             }
-
+            
             if (currentIndex < $questions.length - 1) {
                 $questions.eq(currentIndex).hide();
                 currentIndex++;
                 $questions.eq(currentIndex).show();
-                toggleSubmitButton();
-                toggleNavigationButtons();
+                updateButtons();
             }
         });
-
-        $prevButton.click((e) => {
+        
+        $prevButton.click(function(e) {
             e.preventDefault();
+            
             if (currentIndex > 0) {
                 $questions.eq(currentIndex).hide();
                 currentIndex--;
                 $questions.eq(currentIndex).show();
-                toggleSubmitButton();
-                toggleNavigationButtons();
+                updateButtons();
             }
         });
-
-        // 修改提交按钮行为，点击前执行自动填充
-        $submitButton.click((e) => {
-            // 阻止默认提交行为
+        
+        $submitButton.click(function(e) {
             e.preventDefault();
-            // 执行自动填充并提交
-            submitForm();
+            if (validateCurrentQuestion()) {
+                submitForm();
+            }
         });
-
-        // 超时倒计时 - 隐藏计时器，但保留自动提交功能
-        const timer = setInterval(() => {
-            timeLeft -= 1;
-            
-            // 当时间到时，自动填充并提交
+        
+        // Timer
+        const timer = setInterval(function() {
+            timeLeft--;
             if (timeLeft <= 0) {
                 clearInterval(timer);
                 submitForm();
             }
         }, 1000);
-
-        // Initialize button states
-        toggleSubmitButton();
-        toggleNavigationButtons();
+        
+        // Initialize
+        updateButtons();
     });
 </script>
 {{ endblock }}
