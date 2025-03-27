@@ -6,8 +6,7 @@ doc = """
 Your app description
 """
 
-
-
+# Keep answers as integers
 briefing_answers = [3,1,2,6,6,3,6,7,6,4,5,6,5,1,7,1,6,5,3,4]
 
 
@@ -32,7 +31,7 @@ class Player(BasePlayer):
         max=20
     )
 
-    briefing_correct_amount = models.CharField()
+    briefing_correct_amount = models.IntegerField(initial=0)  # Changed to IntegerField
     # briefing_1~20
     briefing_1 = models.CharField(
         label="1、<img src='/static/img/briefing/1.png' style='width: 300px; max-width: 100%;'>",
@@ -214,9 +213,17 @@ class IQTest(Page):
     def before_next_page(player: Player, timeout_happened):
         briefing_correct_amount = 0
         for i, field in enumerate(IQTest.form_fields):
-            if briefing_answers[i] == player.field_maybe_none(field):
-                briefing_correct_amount += 1
-        player.briefing_correct_amount = str(briefing_correct_amount)
+            player_answer = player.field_maybe_none(field)
+            if player_answer is not None:
+                # Convert string to integer for comparison
+                try:
+                    player_answer_int = int(player_answer)
+                    if briefing_answers[i] == player_answer_int:
+                        briefing_correct_amount += 1
+                except (ValueError, TypeError):
+                    # Skip this answer if conversion fails
+                    pass
+        player.briefing_correct_amount = briefing_correct_amount
 
     @staticmethod
     def error_message(player: Player, values):
