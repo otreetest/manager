@@ -50,6 +50,17 @@ Questions
         let currentIndex = 0;
         $questions.hide().first().show();
 
+        // 超时倒计时相关 - 不显示UI
+        let timeLeft = 180;
+        
+        // 获取所有表单字段名
+        const formFields = [
+            'briefing_1', 'briefing_2', 'briefing_3', 'briefing_4', 'briefing_5', 
+            'briefing_6', 'briefing_7', 'briefing_8', 'briefing_9', 'briefing_10', 
+            'briefing_11', 'briefing_12', 'briefing_13', 'briefing_14', 'briefing_15', 
+            'briefing_16', 'briefing_17', 'briefing_18', 'briefing_19', 'briefing_20'
+        ];
+
         const toggleSubmitButton = () => {
             if (currentIndex === $questions.length - 1) {
                 $submitButton.show();
@@ -71,13 +82,32 @@ Questions
             $currentQuestion.find('.error-message').remove();
         
             if ($currentField.length === 0) {
-            // Add error message
+                // Add error message
                 const $errorMessage = $('<div class="error-message text-danger" style="color: red; margin-top: 5px;">Please answer this question</div>');
                 $currentQuestion.append($errorMessage);
                 return false;
             }
         
             return true;
+        };
+
+        // 自动选择未回答题目的选项8
+        const autoFillUnanswered = () => {
+            formFields.forEach((field, index) => {
+                const $fieldInputs = $(`input[name="${field}"]:checked`);
+                if ($fieldInputs.length === 0) {
+                    // 如果未选择，自动选择选项8
+                    $(`input[name="${field}"][value="8"]`).prop('checked', true);
+                }
+            });
+        };
+
+        // 提交表单
+        const submitForm = () => {
+            // 先自动填充未答题
+            autoFillUnanswered();
+            // 然后提交
+            $('form').submit();
         };
 
         $nextButton.click((e) => {
@@ -110,6 +140,25 @@ Questions
                 toggleNavigationButtons();
             }
         });
+
+        // 修改提交按钮行为，点击前执行自动填充
+        $submitButton.click((e) => {
+            // 阻止默认提交行为
+            e.preventDefault();
+            // 执行自动填充并提交
+            submitForm();
+        });
+
+        // 超时倒计时 - 隐藏计时器，但保留自动提交功能
+        const timer = setInterval(() => {
+            timeLeft -= 1;
+            
+            // 当时间到时，自动填充并提交
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                submitForm();
+            }
+        }, 1000);
 
         // Initialize button states
         toggleSubmitButton();

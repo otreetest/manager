@@ -35,140 +35,140 @@ class Player(BasePlayer):
     briefing_correct_amount = models.IntegerField(initial=0)  # Changed to IntegerField
     # briefing_1~20
     briefing_1 = models.CharField(
-        label="1、<img src='/static/img/briefing/1.png' style='width: 240px; max-width: 100%;'>",
+        label="Question 1<br><br><img src='/static/img/briefing/1.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/1.1.png' style='width: 240px; max-width: 100%;'><br><br>",
         choices=range(1, 9),
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_2 = models.CharField(
-        label="2、<img src='/static/img/briefing/2.png' style='width: 240px; max-width: 100%;'>",
+        label="Question 2<br><br><img src='/static/img/briefing/2.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/2.1.png' style='width: 240px; max-width: 100%;'><br><br>",
         choices=range(1, 9),
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_3 = models.CharField(
-        label="3、<img src='/static/img/briefing/3.png' style='width: 240px; max-width: 100%;'>",
+        label="Question 3<br><br><img src='/static/img/briefing/3.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/3.1.png' style='width: 240px; max-width: 100%;'><br><br>",
         choices=range(1, 9),
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_4 = models.CharField(
-        label="4、<img src='/static/img/briefing/4.png' style='width: 240px; max-width: 100%;'>",
+        label="Question 4<br><br><img src='/static/img/briefing/4.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/4.1.png' style='width: 240px; max-width: 100%;'><br><br>",
         choices=range(1, 9),
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_5 = models.CharField(
-        label="5、<img src='/static/img/briefing/5.png' style='width: 240px; max-width: 100%;'>",
+        label="Question 5<br><br><img src='/static/img/briefing/5.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/5.1.png' style='width: 240px; max-width: 100%;'><br><br>",
         choices=range(1, 9),
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_6 = models.CharField(
-        label="6、<img src='/static/img/briefing/6.png' style='width: 240px; max-width: 100%;'>",
+        label="Question 6<br><br><img src='/static/img/briefing/6.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/6.1.png' style='width: 240px; max-width: 100%;'><br><br>",
         choices=range(1, 9),
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_7 = models.CharField(
-        label="7、<img src='/static/img/briefing/7.png' style='width: 240px; max-width: 100%;'>",
+        label="Question 7<br><br><img src='/static/img/briefing/7.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/7.1.png' style='width: 240px; max-width: 100%;'><br><br>",
         choices=range(1, 9),
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_8 = models.CharField(
-        label="8、<img src='/static/img/briefing/8.png' style='width: 240px; max-width: 100%;'>",
+        label="Question 8<br><br><img src='/static/img/briefing/8.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/8.1.png' style='width: 240px; max-width: 100%;'><br><br>",
         choices=range(1, 9),
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_9 = models.CharField(
-        label="9、<img src='/static/img/briefing/9.png' style='width: 240px; max-width: 100%;'>",
+        label="Question 9<br><br><img src='/static/img/briefing/9.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/9.1.png' style='width: 240px; max-width: 100%;'><br><br>",
         choices=range(1, 9),
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_10 = models.CharField(
-        label="10、<img src='/static/img/briefing/10.png' style='width: 240px; max-width: 100%;'>",
+        label="Question 10<br><br><img src='/static/img/briefing/10.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/10.1.png' style='width: 240px; max-width: 100%;'><br><br>",
         choices=range(1, 9),
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_11 = models.CharField(
-        label="11、<img src='/static/img/briefing/11.png' style='width: 240px; max-width: 100%;'>",
+        label="Question 11<br><br><img src='/static/img/briefing/11.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/11.1.png' style='width: 240px; max-width: 100%;'><br><br>",
         choices=range(1, 9),
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_12 = models.CharField(
-        label="12、<img src='/static/img/briefing/12.png' style='width: 240px; max-width: 100%;'>",
+        label="Question 12<br><br><img src='/static/img/briefing/12.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/12.1.png' style='width: 240px; max-width: 100%;'><br><br>",
         choices=range(1, 9),
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_13 = models.CharField(
-        label="13、<img src='/static/img/briefing/13.png' style='width: 240px; max-width: 100%;'>",
+        label="Question 13<br><br><img src='/static/img/briefing/13.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/13.1.png' style='width: 240px; max-width: 100%;'><br><br>",
         choices=range(1, 9),
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_14 = models.CharField(
-        label="14、<img src='/static/img/briefing/14.png' style='width: 240px; max-width: 100%;'>",
+        label="Question 14<br><br><img src='/static/img/briefing/14.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/14.1.png' style='width: 240px; max-width: 100%;'><br><br>",
         choices=range(1, 9),
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_15 = models.CharField(
-        label="15、<img src='/static/img/briefing/15.png' style='width: 240px; max-width: 100%;'>",
+        label="Question 15<br><br><img src='/static/img/briefing/15.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/15.1.png' style='width: 240px; max-width: 100%;'><br><br>",
         choices=range(1, 9),
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_16 = models.CharField(
-        label="16、<img src='/static/img/briefing/16.png' style='width: 240px; max-width: 100%;'>",
+        label="Question 16<br><br><img src='/static/img/briefing/16.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/16.1.png' style='width: 240px; max-width: 100%;'><br><br>",
         choices=range(1, 9),
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_17 = models.CharField(
-        label="17、<img src='/static/img/briefing/17.png' style='width: 240px; max-width: 100%;'>",
+        label="Question 17<br><br><img src='/static/img/briefing/17.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/17.1.png' style='width: 240px; max-width: 100%;'><br><br>",
         choices=range(1, 9),
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_18 = models.CharField(
-        label="18、<img src='/static/img/briefing/18.png' style='width: 240px; max-width: 100%;'>",
+        label="Question 18<br><br><img src='/static/img/briefing/18.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/18.1.png' style='width: 240px; max-width: 100%;'><br><br>",
         choices=range(1, 9),
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_19 = models.CharField(
-        label="19、<img src='/static/img/briefing/19.png' style='width: 240px; max-width: 100%;'>",
+        label="Question 19<br><br><img src='/static/img/briefing/19.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/19.1.png' style='width: 240px; max-width: 100%;'><br><br>",
         choices=range(1, 9),
         widget=widgets.RadioSelectHorizontal,
         blank=True
     )
 
     briefing_20 = models.CharField(
-        label="20、<img src='/static/img/briefing/20.png' style='width: 240px; max-width: 100%;'>",
+        label="Question 20<br><br><img src='/static/img/briefing/20.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/20.1.png' style='width: 240px; max-width: 100%;'><br><br>",
         choices=range(1, 9),
         widget=widgets.RadioSelectHorizontal,
         blank=True
@@ -202,7 +202,7 @@ class Intro(Page):
     pass
 
 class IQTest(Page):
-    timeout_seconds = 180
+    timeout_seconds = 180  # 设置超时时间为18秒
     form_model = 'player'
     form_fields = [
         'briefing_1', 'briefing_2', 'briefing_3', 'briefing_4', 'briefing_5', 'briefing_6', 'briefing_7',
@@ -211,7 +211,20 @@ class IQTest(Page):
     ]
 
     @staticmethod
+    def vars_for_template(player):
+        return {
+            'timeout_seconds': IQTest.timeout_seconds  # 传递超时时间到模板
+        }
+
+    @staticmethod
     def before_next_page(player: Player, timeout_happened):
+        # 如果发生超时，为所有未回答的问题设置默认值8
+        if timeout_happened:
+            for field in IQTest.form_fields:
+                if player.field_maybe_none(field) is None:
+                    setattr(player, field, '8')
+        
+        # 计算正确答案数量
         briefing_correct_amount = 0
         for i, field in enumerate(IQTest.form_fields):
             player_answer = player.field_maybe_none(field)
@@ -227,16 +240,6 @@ class IQTest(Page):
                     pass
         
         player.briefing_correct_amount = briefing_correct_amount
-
-    @staticmethod
-    def error_message(player: Player, values):
-        if player.timeout_happened:
-            return None  # 如果超时了，不报错，直接提交已有答案
-        errors = {}
-        for field in IQTest.form_fields:
-            if values.get(field) is None:
-                errors[field] = 'Please answer this question'
-        return errors if errors else None
 
 class StatePrev(Page):
     pass
