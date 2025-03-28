@@ -8,7 +8,7 @@ Your app description
 
 # Keep answers as integers
 # For questions with multiple correct answers, use lists of integers
-briefing_answers = [2,1,3,[5,7],3,2,6,4,6,1,5,6,5,1,4,2,6,5,3,4]
+briefing_answers = [2,1,3,[5,7],3,3,3,4,6,1,5,6,5,1,4,2,6,5,6,4]
 
 
 class C(BaseConstants):
