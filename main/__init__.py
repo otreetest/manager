@@ -8,7 +8,7 @@ Your app description
 
 # Keep answers as integers
 # For questions with multiple correct answers, use lists of integers
-briefing_answers = [2,1,3,[5,7],3,3,3,4,6,1,5,6,5,1,4,2,6,5,6,4]
+briefing_answers = [2,1,3,1,3,3,3,4,6,[5,7],5,6,5,1,4]
 
 
 class C(BaseConstants):
@@ -29,42 +29,42 @@ class Player(BasePlayer):
     stated_amount = models.IntegerField(
         label="Please enter the number of points you have achieved in this task:",
         min=0,
-        max=20
+        max=15
     )
 
     briefing_correct_amount = models.IntegerField(initial=0)  # Changed to IntegerField
-    # briefing_1~20
+    # briefing_1~15
     briefing_1 = models.CharField(
-        label="Question 1<br><br><img src='/static/img/briefing/1.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/1.1.png' style='width: 280px; max-width: 100%;'><br><br>",
-        choices=range(1, 9),
+        label="Question 1<br><br><img src='/static/img/briefing/1.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 4 options given to fill in the question mark:<br><br><img src='/static/img/briefing/1.1.png' style='width: 280px; max-width: 100%;'><br><br>",
+        choices=range(1, 5),
         widget=widgets.RadioSelect,
         blank=True
     )
 
     briefing_2 = models.CharField(
-        label="Question 2<br><br><img src='/static/img/briefing/2.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/2.1.png' style='width: 280px; max-width: 100%;'><br><br>",
-        choices=range(1, 9),
+        label="Question 2<br><br><img src='/static/img/briefing/2.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 4 options given to fill in the question mark:<br><br><img src='/static/img/briefing/2.1.png' style='width: 280px; max-width: 100%;'><br><br>",
+        choices=range(1, 5),
         widget=widgets.RadioSelect,
         blank=True
     )
 
     briefing_3 = models.CharField(
-        label="Question 3<br><br><img src='/static/img/briefing/3.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/3.1.png' style='width: 280px; max-width: 100%;'><br><br>",
-        choices=range(1, 9),
+        label="Question 3<br><br><img src='/static/img/briefing/3.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 4 options given to fill in the question mark:<br><br><img src='/static/img/briefing/3.1.png' style='width: 280px; max-width: 100%;'><br><br>",
+        choices=range(1, 5),
         widget=widgets.RadioSelect,
         blank=True
     )
 
     briefing_4 = models.CharField(
-        label="Question 4<br><br><img src='/static/img/briefing/4.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/4.1.png' style='width: 280px; max-width: 100%;'><br><br>",
-        choices=range(1, 9),
+        label="Question 4<br><br><img src='/static/img/briefing/4.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 4 options given to fill in the question mark:<br><br><img src='/static/img/briefing/4.1.png' style='width: 280px; max-width: 100%;'><br><br>",
+        choices=range(1, 5),
         widget=widgets.RadioSelect,
         blank=True
     )
 
     briefing_5 = models.CharField(
-        label="Question 5<br><br><img src='/static/img/briefing/5.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/5.1.png' style='width: 280px; max-width: 100%;'><br><br>",
-        choices=range(1, 9),
+        label="Question 5<br><br><img src='/static/img/briefing/5.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 4 options given to fill in the question mark:<br><br><img src='/static/img/briefing/5.1.png' style='width: 280px; max-width: 100%;'><br><br>",
+        choices=range(1, 5),
         widget=widgets.RadioSelect,
         blank=True
     )
@@ -139,40 +139,6 @@ class Player(BasePlayer):
         blank=True
     )
 
-    briefing_16 = models.CharField(
-        label="Question 16<br><br><img src='/static/img/briefing/16.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/16.1.png' style='width: 280px; max-width: 100%;'><br><br>",
-        choices=range(1, 9),
-        widget=widgets.RadioSelect,
-        blank=True
-    )
-
-    briefing_17 = models.CharField(
-        label="Question 17<br><br><img src='/static/img/briefing/17.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/17.1.png' style='width: 280px; max-width: 100%;'><br><br>",
-        choices=range(1, 9),
-        widget=widgets.RadioSelect,
-        blank=True
-    )
-
-    briefing_18 = models.CharField(
-        label="Question 18<br><br><img src='/static/img/briefing/18.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/18.1.png' style='width: 280px; max-width: 100%;'><br><br>",
-        choices=range(1, 9),
-        widget=widgets.RadioSelect,
-        blank=True
-    )
-
-    briefing_19 = models.CharField(
-        label="Question 19<br><br><img src='/static/img/briefing/19.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/19.1.png' style='width: 280px; max-width: 100%;'><br><br>",
-        choices=range(1, 9),
-        widget=widgets.RadioSelect,
-        blank=True
-    )
-
-    briefing_20 = models.CharField(
-        label="Question 20<br><br><img src='/static/img/briefing/20.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/20.1.png' style='width: 280px; max-width: 100%;'><br><br>",
-        choices=range(1, 9),
-        widget=widgets.RadioSelect,
-        blank=True
-    )
 
     did_misreport = models.BooleanField(
         label="Did you misreport your accuracy?",
@@ -207,7 +173,7 @@ class IQTest(Page):
     form_fields = [
         'briefing_1', 'briefing_2', 'briefing_3', 'briefing_4', 'briefing_5', 'briefing_6', 'briefing_7',
         'briefing_8', 'briefing_9', 'briefing_10', 'briefing_11', 'briefing_12', 'briefing_13', 'briefing_14',
-        'briefing_15', 'briefing_16', 'briefing_17', 'briefing_18', 'briefing_19', 'briefing_20'
+        'briefing_15'
     ]
 
     @staticmethod
@@ -254,10 +220,10 @@ class State(Page):
 class Result(Page):
     @staticmethod
     def vars_for_template(player: Player):
-        if player.stated_amount <= 16:
+        if player.stated_amount <= 11:
             player.payoff = 2
         else:
-            player.payoff = 2 + 0.5 * (player.stated_amount - 16)
+            player.payoff = 2 + 0.5 * (player.stated_amount - 11)
             
         return {
             'correct_amount': player.briefing_correct_amount,

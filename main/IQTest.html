@@ -27,15 +27,14 @@ Questions
     }
 </style>
 
-<!-- Remove all previous template code and just manually render the choices -->
+<!-- Question 1 with 4 options -->
 <ul class="question-list">
     <li>
         <div class="form-group">
-            <label class="control-label">Question 1<br><br><img src='/static/img/briefing/1.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/1.1.png' style='width: 240px; max-width: 100%;'><br><br></label>
+            <label class="control-label">Question 1<br><br><img src='/static/img/briefing/1.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 4 options given to fill in the question mark:<br><br><img src='/static/img/briefing/1.1.png' style='width: 240px; max-width: 100%;'><br><br></label>
             
             <div class="options-container">
                 <div class="options-row">
-                    <!-- First row - no fixed width, true left alignment -->
                     <div class="option-cell">
                         <input type="radio" id="id_briefing_1_0" name="briefing_1" value="1">
                         <label for="id_briefing_1_0">1</label>
@@ -53,29 +52,9 @@ Questions
                         <label for="id_briefing_1_3">4</label>
                     </div>
                 </div>
-                <div class="options-row">
-                    <!-- Second row - no fixed width, true left alignment -->
-                    <div class="option-cell">
-                        <input type="radio" id="id_briefing_1_4" name="briefing_1" value="5">
-                        <label for="id_briefing_1_4">5</label>
-                    </div>
-                    <div class="option-cell">
-                        <input type="radio" id="id_briefing_1_5" name="briefing_1" value="6">
-                        <label for="id_briefing_1_5">6</label>
-                    </div>
-                    <div class="option-cell">
-                        <input type="radio" id="id_briefing_1_6" name="briefing_1" value="7">
-                        <label for="id_briefing_1_6">7</label>
-                    </div>
-                    <div class="option-cell">
-                        <input type="radio" id="id_briefing_1_7" name="briefing_1" value="8">
-                        <label for="id_briefing_1_7">8</label>
-                    </div>
-                </div>
             </div>
         </div>
     </li>
-    <!-- Add more questions using the same pattern -->
 </ul>
 
 <div style="display: flex;justify-content: center;gap:1rem">
@@ -86,62 +65,60 @@ Questions
 
 <script>
     $(document).ready(function() {
-        // Generate remaining questions using the same layout pattern
+        // Generate questions 2-15
+        // Questions 2-5 have 4 options, Questions 6-15 have 8 options
         const questions = [
-            "briefing_2", "briefing_3", "briefing_4", "briefing_5", 
-            "briefing_6", "briefing_7", "briefing_8", "briefing_9", "briefing_10",
-            "briefing_11", "briefing_12", "briefing_13", "briefing_14", "briefing_15",
-            "briefing_16", "briefing_17", "briefing_18", "briefing_19", "briefing_20"
+            { name: "briefing_2", optionCount: 4 },
+            { name: "briefing_3", optionCount: 4 },
+            { name: "briefing_4", optionCount: 4 },
+            { name: "briefing_5", optionCount: 4 },
+            { name: "briefing_6", optionCount: 8 },
+            { name: "briefing_7", optionCount: 8 },
+            { name: "briefing_8", optionCount: 8 },
+            { name: "briefing_9", optionCount: 8 },
+            { name: "briefing_10", optionCount: 8 },
+            { name: "briefing_11", optionCount: 8 },
+            { name: "briefing_12", optionCount: 8 },
+            { name: "briefing_13", optionCount: 8 },
+            { name: "briefing_14", optionCount: 8 },
+            { name: "briefing_15", optionCount: 8 }
         ];
         
+        // Function to generate options for a question
+        function generateOptions(fieldName, count) {
+            let html = '';
+            const rowSize = 4; // 4 options per row
+            
+            for (let i = 0; i < count; i += rowSize) {
+                html += '<div class="options-row">';
+                
+                // Add options for this row
+                for (let j = 0; j < rowSize && (i + j) < count; j++) {
+                    const optionNum = i + j + 1;
+                    html += `
+                    <div class="option-cell">
+                        <input type="radio" id="id_${fieldName}_${i+j}" name="${fieldName}" value="${optionNum}">
+                        <label for="id_${fieldName}_${i+j}">${optionNum}</label>
+                    </div>`;
+                }
+                
+                html += '</div>';
+            }
+            
+            return html;
+        }
+        
         // Generate HTML for each question
-        questions.forEach((field, index) => {
+        questions.forEach((question, index) => {
             const num = index + 2; // Start from question 2
             
             let html = `
             <li style="display: none;">
                 <div class="form-group">
-                    <label class="control-label">Question ${num}<br><br><img src='/static/img/briefing/${num}.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/${num}.1.png' style='width: 240px; max-width: 100%;'><br><br></label>
+                    <label class="control-label">Question ${num}<br><br><img src='/static/img/briefing/${num}.png' style='width: 240px; max-width: 100%;'><br><br>Choose the most appropriate one from the ${question.optionCount} options given to fill in the question mark:<br><br><img src='/static/img/briefing/${num}.1.png' style='width: 240px; max-width: 100%;'><br><br></label>
                     
                     <div class="options-container">
-                        <div class="options-row">
-                            <!-- First row -->
-                            <div class="option-cell">
-                                <input type="radio" id="id_${field}_0" name="${field}" value="1">
-                                <label for="id_${field}_0">1</label>
-                            </div>
-                            <div class="option-cell">
-                                <input type="radio" id="id_${field}_1" name="${field}" value="2">
-                                <label for="id_${field}_1">2</label>
-                            </div>
-                            <div class="option-cell">
-                                <input type="radio" id="id_${field}_2" name="${field}" value="3">
-                                <label for="id_${field}_2">3</label>
-                            </div>
-                            <div class="option-cell">
-                                <input type="radio" id="id_${field}_3" name="${field}" value="4">
-                                <label for="id_${field}_3">4</label>
-                            </div>
-                        </div>
-                        <div class="options-row">
-                            <!-- Second row -->
-                            <div class="option-cell">
-                                <input type="radio" id="id_${field}_4" name="${field}" value="5">
-                                <label for="id_${field}_4">5</label>
-                            </div>
-                            <div class="option-cell">
-                                <input type="radio" id="id_${field}_5" name="${field}" value="6">
-                                <label for="id_${field}_5">6</label>
-                            </div>
-                            <div class="option-cell">
-                                <input type="radio" id="id_${field}_6" name="${field}" value="7">
-                                <label for="id_${field}_6">7</label>
-                            </div>
-                            <div class="option-cell">
-                                <input type="radio" id="id_${field}_7" name="${field}" value="8">
-                                <label for="id_${field}_7">8</label>
-                            </div>
-                        </div>
+                        ${generateOptions(question.name, question.optionCount)}
                     </div>
                 </div>
             </li>`;
@@ -163,8 +140,7 @@ Questions
         const formFields = [
             'briefing_1', 'briefing_2', 'briefing_3', 'briefing_4', 'briefing_5', 
             'briefing_6', 'briefing_7', 'briefing_8', 'briefing_9', 'briefing_10', 
-            'briefing_11', 'briefing_12', 'briefing_13', 'briefing_14', 'briefing_15', 
-            'briefing_16', 'briefing_17', 'briefing_18', 'briefing_19', 'briefing_20'
+            'briefing_11', 'briefing_12', 'briefing_13', 'briefing_14', 'briefing_15'
         ];
         
         function updateButtons() {
@@ -191,9 +167,11 @@ Questions
         }
         
         function autoFillUnanswered() {
-            formFields.forEach((field) => {
+            formFields.forEach((field, index) => {
                 if ($(`input[name="${field}"]:checked`).length === 0) {
-                    $(`input[name="${field}"][value="8"]`).prop('checked', true);
+                    // Default value is 4 for first 5 questions, 8 for the rest
+                    const defaultValue = index < 5 ? 4 : 8;
+                    $(`input[name="${field}"][value="${defaultValue}"]`).prop('checked', true);
                 }
             });
         }
@@ -244,6 +222,9 @@ Questions
                 submitForm();
             }
         }, 1000);
+        
+        // Show first question
+        $questions.eq(0).show();
         
         // Initialize
         updateButtons();
