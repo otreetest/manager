@@ -152,6 +152,27 @@ class Player(BasePlayer):
     misreport_reason = models.LongStringField(
         label="Please briefly describe why you did/didn't misreport",
     )
+
+    accept_next_experiment = models.BooleanField(
+        label="Would you like to participate in the additional experiment?",
+        choices=[
+            [True, 'Yes'],
+            [False, 'No']
+        ],
+        widget=widgets.RadioSelect
+    )
+
+    prefer = models.StringField(
+        label="Which painting do you prefer?",
+        choices=[
+            ['Left', 'Left'],
+            ['Right', 'Right']
+        ],
+        widget=widgets.RadioSelect
+    )
+    
+    # Add the painter field to store the mapped painter name
+    painter = models.StringField()
 # PAGES
 
 
@@ -220,10 +241,8 @@ class State(Page):
 class Result(Page):
     @staticmethod
     def vars_for_template(player: Player):
-        if player.stated_amount <= 11:
-            player.payoff = 2
-        else:
-            player.payoff = 2 + 0.5 * (player.stated_amount - 11)
+        # Calculate the payoff based on the formula: 2 + 0.15 * briefing_correct_amount
+        player.payoff = 2 + 0.15 * player.stated_amount
             
         return {
             'correct_amount': player.briefing_correct_amount,
@@ -240,20 +259,25 @@ class Survey(Page):
         
         import re
         if values['misreport_reason']:
-            if not re.match(r'^[a-zA-Z\s]*$', values['misreport_reason']):
-                errors['misreport_reason'] = 'Please enter only letters'
+            if not re.match(r'^[a-zA-Z\s\.\,\!\?\;\:\-\'\"]*$', values['misreport_reason']):
+                errors['misreport_reason'] = 'Please enter only letters and punctuation'
         
         # 如果 misreport_reason 为空，添加错误消息
         if not values['misreport_reason'].strip():
             errors['misreport_reason'] = 'This field is required'
             
-        return errors if errors else None 
+        return errors if errors else None
     
 class Code(Page):
     def vars_for_template(self):
         return {
-            'completion_code': 'C5TW2OXP'
+            'completion_code': 'C1I5TIFN'
         }
+    
+class Painting(Page):
+    form_model = 'player'
+    form_fields = ['prefer']
+   
 
 page_sequence = [
     Briefing,
@@ -264,5 +288,6 @@ page_sequence = [
     State,
     Result,
     Survey,
+    Painting,
     Code
 ]
