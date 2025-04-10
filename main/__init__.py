@@ -23,48 +23,46 @@ class Group(BaseGroup):
     pass
 
 class Player(BasePlayer):
-    consent = models.BooleanField(
-    label="I consent to participate in this study"
-    )
+
     stated_amount = models.IntegerField(
         label="Please enter the number of points you have achieved in this task:",
         min=0,
-        max=20
+        max=15
     )
 
     briefing_correct_amount = models.IntegerField(initial=0)  # Changed to IntegerField
-    # briefing_1~20
+    # briefing_1~15
     briefing_1 = models.CharField(
-        label="Question 1<br><br><img src='/static/img/briefing/1.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/1.1.png' style='width: 280px; max-width: 100%;'><br><br>",
-        choices=range(1, 9),
+        label="Question 1<br><br><img src='/static/img/briefing/1.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 4 options given to fill in the question mark:<br><br><img src='/static/img/briefing/1.1.png' style='width: 280px; max-width: 100%;'><br><br>",
+        choices=range(1, 5),
         widget=widgets.RadioSelect,
         blank=True
     )
 
     briefing_2 = models.CharField(
-        label="Question 2<br><br><img src='/static/img/briefing/2.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/2.1.png' style='width: 280px; max-width: 100%;'><br><br>",
-        choices=range(1, 9),
+        label="Question 2<br><br><img src='/static/img/briefing/2.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 4 options given to fill in the question mark:<br><br><img src='/static/img/briefing/2.1.png' style='width: 280px; max-width: 100%;'><br><br>",
+        choices=range(1, 5),
         widget=widgets.RadioSelect,
         blank=True
     )
 
     briefing_3 = models.CharField(
-        label="Question 3<br><br><img src='/static/img/briefing/3.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/3.1.png' style='width: 280px; max-width: 100%;'><br><br>",
-        choices=range(1, 9),
+        label="Question 3<br><br><img src='/static/img/briefing/3.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 4 options given to fill in the question mark:<br><br><img src='/static/img/briefing/3.1.png' style='width: 280px; max-width: 100%;'><br><br>",
+        choices=range(1, 5),
         widget=widgets.RadioSelect,
         blank=True
     )
 
     briefing_4 = models.CharField(
-        label="Question 4<br><br><img src='/static/img/briefing/4.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/4.1.png' style='width: 280px; max-width: 100%;'><br><br>",
-        choices=range(1, 9),
+        label="Question 4<br><br><img src='/static/img/briefing/4.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 4 options given to fill in the question mark:<br><br><img src='/static/img/briefing/4.1.png' style='width: 280px; max-width: 100%;'><br><br>",
+        choices=range(1, 5),
         widget=widgets.RadioSelect,
         blank=True
     )
 
     briefing_5 = models.CharField(
-        label="Question 5<br><br><img src='/static/img/briefing/5.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 8 options given to fill in the question mark:<br><br><img src='/static/img/briefing/5.1.png' style='width: 280px; max-width: 100%;'><br><br>",
-        choices=range(1, 9),
+        label="Question 5<br><br><img src='/static/img/briefing/5.png' style='width: 280px; max-width: 100%;'><br><br>Choose the most appropriate one from the 4 options given to fill in the question mark:<br><br><img src='/static/img/briefing/5.1.png' style='width: 280px; max-width: 100%;'><br><br>",
+        choices=range(1, 5),
         widget=widgets.RadioSelect,
         blank=True
     )
@@ -176,14 +174,6 @@ class Player(BasePlayer):
 # PAGES
 
 
-class Briefing(Page):
-    form_model = 'player'
-    form_fields = ['consent']
-
-    @staticmethod
-    def app_after_this_page(player: Player, upcoming_apps):
-        if not player.consent:
-            return 'end'
         
 class Intro(Page):
     pass
@@ -232,23 +222,59 @@ class StatePrev(Page):
     pass
 
 class MisreportingRule(Page):
-    pass
+    @staticmethod
+    def get_round_robin_integer(player):
+        """
+        Returns one of the integers 8, 10, or 12 in a round-robin fashion across different players.
+        This function will cycle through the three integers, ensuring each player gets a different value.
+        
+        Args:
+            player: The current player instance
+            
+        Returns:
+            int: One of the integers 8, 10, or 12
+        """
+        # The integers to cycle through
+        integers = [8, 10, 12]
+        
+        # Use the player's id_in_group to determine which integer to return
+        # Subtract 1 from id_in_group since it starts from 1, not 0
+        index = (player.id_in_group - 1) % 3
+        
+        return integers[index]
+    
+    def vars_for_template(player):
+        # 在 oTree 中，Page 类中的方法的第一个参数是 player 对象
+        return {
+            'round_robin_integer': MisreportingRule.get_round_robin_integer(player)
+        }
 
 class State(Page):
     form_model = 'player'
     form_fields = ['stated_amount']
 
+
 class Result(Page):
     @staticmethod
     def vars_for_template(player: Player):
-        # Calculate the payoff based on the formula: 2 + 0.15 * briefing_correct_amount
-        player.payoff = 2 + 0.15 * player.stated_amount
-            
+        # 获取 round_robin_integer 值
+        threshold = MisreportingRule.get_round_robin_integer(player)
+        max_bonus_points = 4  
+
+        if player.stated_amount <= threshold:
+            player.payoff = 1
+        elif player.stated_amount <= threshold + max_bonus_points:
+            player.payoff = 1 + 0.5 * (player.stated_amount - threshold)
+        else:
+            player.payoff = 3  
+
         return {
             'correct_amount': player.briefing_correct_amount,
             'stated_amount': player.stated_amount,
-            'payoff': player.payoff
+            'payoff': player.payoff,
+            'threshold': threshold  # 也传递阈值到模板，以便在页面上显示
         }
+
 
 class Survey(Page):
     form_model = 'player'
@@ -280,7 +306,6 @@ class Painting(Page):
    
 
 page_sequence = [
-    Briefing,
     Intro,
     IQTest,
     StatePrev,
