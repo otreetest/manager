@@ -113,7 +113,7 @@ class Player(BasePlayer):
         min=0,
         max=15
     )
-
+    threshold_integer = models.IntegerField()
     briefing_correct_amount = models.IntegerField(initial=0)  # Changed to IntegerField
     # briefing_1~15
     briefing_1 = models.CharField(
@@ -222,18 +222,7 @@ class Player(BasePlayer):
     )
 
 
-    did_misreport = models.BooleanField(
-        label="Did you misreport your accuracy?",
-        choices=[
-            [True, 'Yes'],
-            [False, 'No'],
-        ],
-        widget=widgets.RadioSelect,
-    )
-
-    misreport_reason = models.LongStringField(
-        label="Please briefly describe why you did/didn't misreport",
-    )
+    misreport_reason = models.LongStringField()
 
     accept_next_experiment = models.BooleanField(
         label="Would you like to participate in the additional experiment?",
@@ -359,43 +348,32 @@ class StatePrev(Page):
 class MisreportingRule(Page):
     @staticmethod
     def get_round_robin_integer(player):
-        """
-        Returns one of the integers 8, 10, or 12 in a round-robin fashion across different players.
-        This function will cycle through the three integers, ensuring each player gets a different value.
-        
-        Args:
-            player: The current player instance
-            
-        Returns:
-            int: One of the integers 8, 10, or 12
-        """
-        # The integers to cycle through
         integers = [8, 10, 12, 100]
-        
-        # Use the player's id_in_group to determine which integer to return
-        # Subtract 1 from id_in_group since it starts from 1, not 0
         index = (player.id_in_group - 1) % 4
-        
         return integers[index]
     
-    def vars_for_template(self):
+    @staticmethod
+    def vars_for_template(player):
+        threshold = MisreportingRule.get_round_robin_integer(player)
+        player.threshold_integer = threshold
         return {
-            'round_robin_integer': MisreportingRule.get_round_robin_integer(self)
+            'round_robin_integer': threshold
         }
 
 class State(Page):
     form_model = 'player'
     form_fields = ['stated_amount']
 
-    def vars_for_template(self):
+    @staticmethod
+    def vars_for_template(player):
         return {
-            'round_robin_integer': MisreportingRule.get_round_robin_integer(self)
+            'round_robin_integer': player.threshold_integer
         }
     
 class Result(Page):
     @staticmethod
-    def vars_for_template(player: Player):
-        threshold = MisreportingRule.get_round_robin_integer(player)
+    def vars_for_template(player):
+        threshold = player.threshold_integer
         max_bonus_points = 4  
 
         if player.stated_amount <= threshold:
@@ -415,15 +393,15 @@ class Result(Page):
 
 class Survey(Page):
     form_model = 'player'
-    form_fields = ['did_misreport', 'misreport_reason']
+    form_fields = ['misreport_reason']
     
     def error_message(self, values):
         errors = {}
         
         import re
         if values['misreport_reason']:
-            if not re.match(r'^[a-zA-Z\s\.\,\!\?\;\:\-\'\"]*$', values['misreport_reason']):
-                errors['misreport_reason'] = 'Please enter only letters and punctuation'
+            if not re.match(r'^[a-zA-Z0-9\s\.\,\!\?\;\:\-\'\"]*$', values['misreport_reason']):
+                errors['misreport_reason'] = 'Please enter only letters, numbers, and punctuation'
         
         if not values['misreport_reason'].strip():
             errors['misreport_reason'] = 'This field is required'
