@@ -4,12 +4,12 @@ Reporting Your Score
 {{ block content }}
 
 {{ formfields }}
-
+{% if round_robin_integer != 100 %}
 <p>
 
     Remember, this score will be used to calculate your bonus. Your participation earning will not be affected by any score you report. 
 </p>
-
+{% endif %}
 {{ next_button }}
 
 {{ endblock }}

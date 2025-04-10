@@ -3,11 +3,9 @@ import random
 from otree.api import *
 
 doc = """
-Your app description
+Manager Game
 """
 
-# Keep answers as integers
-# For questions with multiple correct answers, use lists of integers
 briefing_answers = [2,1,3,1,3,2,3,4,6,[5,7],5,6,5,1,4]
 
 
@@ -15,6 +13,92 @@ class C(BaseConstants):
     NAME_IN_URL = 'main'
     NUM_ROUNDS = 1
     PLAYERS_PER_GROUP = None
+    CHOICES = range(1, 6)
+    QUESTIONS = [
+        '...is reserved',
+        '...generally trusting',
+        '...tends to be lazy',
+        '...is relaxed, handles stress well',
+        '...has few artistic interests',
+        '...does things efficiently',
+        '...is outgoing, sociable',
+        '...tends to find fault with others',
+        '...does a thorough job',
+        '...gets nervous easily',
+        '...has an active imagination',
+        '...perseveres until the task is finished',
+    ]
+
+    COMPARISON_QUESTIONS = [
+        'I always pay a lot of attention to how I do things compared with how others do things.',
+        'I am not the type of person who compares often with others.',
+        'I often compare how I am doing socially (e.g., social skills, popularity) with other people.',
+        'I see myself as someone who enjoys winning and hates losing.',
+        'I see myself as someone who enjoys competing, regardless of whether I win or lose.',
+        'I see myself as a competitive person.',
+        'Competition brings the best out of me.',
+    ]
+
+    DICTATOR_ENDOWMENT = 10
+    AGE_LABEL = "What is your age?"
+    
+    GENDER_LABEL = "What is your gender?"
+    GENDER_CHOICES = ["Male", "Female", "Non-binary","Prefer not to say"]
+    
+    EDUCATION_LABEL = "Please indicate the highest level of education completed"
+    EDUCATION_CHOICES = [
+        "Less than High School",
+        "High School or equivalent",
+        "Vocational/Technical School (2 years)",
+        "Some College",
+        "College Graduate (4 years)",
+        "Master's Degree (MA)",
+        "Doctoral Degree (PhD)"
+    ]
+
+    INCOME_LABEL = "What is your annual household income?"
+    INCOME_CHOICES = [
+        "Less than $25,000",
+        "$25,000 - $49,999",
+        "$50,000 - $74,999",
+        "$75,000 - $99,999",
+        "$100,000 - $149,999",
+        "$150,000 or more",
+        "Prefer not to say"
+    ]
+    
+    # Demographics - Employment
+    EMPLOYMENT_LABEL = "What is your current employment status?"
+    EMPLOYMENT_CHOICES = [
+        "Full-time employed",
+        "Part-time employed",
+        "Self-employed",
+        "Unemployed",
+        "Student",
+        "Retired",
+        "Unable to work",
+        "Other"
+    ]
+    
+    # Demographics - Occupation/Industry
+    OCCUPATION_LABEL = "What industry do you work in (or most recently worked in)?"
+    OCCUPATION_CHOICES = [
+        "Education",
+        "Healthcare",
+        "Technology/IT",
+        "Finance/Banking",
+        "Retail/Sales",
+        "Manufacturing",
+        "Government/Public Service",
+        "Arts/Entertainment",
+        "Construction/Trades",
+        "Transportation/Logistics",
+        "Hospitality/Food Service",
+        "Legal/Professional Services",
+        "Non-profit/NGO",
+        "Other"
+    ]
+
 
 class Subsession(BaseSubsession):
     pass
@@ -171,6 +255,59 @@ class Player(BasePlayer):
     
     # Add the painter field to store the mapped painter name
     painter = models.StringField()
+    
+    # Big5 questions 
+    Q1 = models.IntegerField(label=C.QUESTIONS[0], choices=C.CHOICES, widget=widgets.RadioSelectHorizontal)
+    Q2 = models.IntegerField(label=C.QUESTIONS[1], choices=C.CHOICES, widget=widgets.RadioSelectHorizontal)
+    Q3 = models.IntegerField(label=C.QUESTIONS[2], choices=C.CHOICES, widget=widgets.RadioSelectHorizontal)
+    Q4 = models.IntegerField(label=C.QUESTIONS[3], choices=C.CHOICES, widget=widgets.RadioSelectHorizontal)
+    Q5 = models.IntegerField(label=C.QUESTIONS[4], choices=C.CHOICES, widget=widgets.RadioSelectHorizontal)
+    Q6 = models.IntegerField(label=C.QUESTIONS[5], choices=C.CHOICES, widget=widgets.RadioSelectHorizontal)
+    Q7 = models.IntegerField(label=C.QUESTIONS[6], choices=C.CHOICES, widget=widgets.RadioSelectHorizontal)
+    Q8 = models.IntegerField(label=C.QUESTIONS[7], choices=C.CHOICES, widget=widgets.RadioSelectHorizontal)
+    Q9 = models.IntegerField(label=C.QUESTIONS[8], choices=C.CHOICES, widget=widgets.RadioSelectHorizontal)
+    Q10 = models.IntegerField(label=C.QUESTIONS[9], choices=C.CHOICES, widget=widgets.RadioSelectHorizontal)
+    Q11 = models.IntegerField(label=C.QUESTIONS[10], choices=C.CHOICES, widget=widgets.RadioSelectHorizontal)
+    Q12 = models.IntegerField(label=C.QUESTIONS[11], choices=C.CHOICES, widget=widgets.RadioSelectHorizontal)
+    
+    # Comparison questions
+    Comp1 = models.IntegerField(label=C.COMPARISON_QUESTIONS[0], choices=C.CHOICES, widget=widgets.RadioSelectHorizontal)
+    Comp2 = models.IntegerField(label=C.COMPARISON_QUESTIONS[1], choices=C.CHOICES, widget=widgets.RadioSelectHorizontal)
+    Comp3 = models.IntegerField(label=C.COMPARISON_QUESTIONS[2], choices=C.CHOICES, widget=widgets.RadioSelectHorizontal)
+    Comp4 = models.IntegerField(label=C.COMPARISON_QUESTIONS[3], choices=C.CHOICES, widget=widgets.RadioSelectHorizontal)
+    Comp5 = models.IntegerField(label=C.COMPARISON_QUESTIONS[4], choices=C.CHOICES, widget=widgets.RadioSelectHorizontal)
+    Comp6 = models.IntegerField(label=C.COMPARISON_QUESTIONS[5], choices=C.CHOICES, widget=widgets.RadioSelectHorizontal)
+    Comp7 = models.IntegerField(label=C.COMPARISON_QUESTIONS[6], choices=C.CHOICES, widget=widgets.RadioSelectHorizontal)
+    
+    # Dictator game
+    dictator_keep = models.CurrencyField(
+        min=0, 
+        max=C.DICTATOR_ENDOWMENT,
+        label="(Please move the slider)"
+    )
+    
+    # Demographic fields
+    age = models.IntegerField(label=C.AGE_LABEL, min=18, max=100)
+    gender = models.StringField(
+        label=C.GENDER_LABEL,
+        choices=C.GENDER_CHOICES
+    )
+    education = models.StringField(
+        label=C.EDUCATION_LABEL,
+        choices=C.EDUCATION_CHOICES
+    )
+    income = models.StringField(
+        label=C.INCOME_LABEL,
+        choices=C.INCOME_CHOICES
+    )
+    employment = models.StringField(
+        label=C.EMPLOYMENT_LABEL,
+        choices=C.EMPLOYMENT_CHOICES
+    )
+    occupation = models.StringField(
+        label=C.OCCUPATION_LABEL,
+        choices=C.OCCUPATION_CHOICES
+    )
 # PAGES
 
 
@@ -179,7 +316,7 @@ class Intro(Page):
     pass
 
 class IQTest(Page):
-    timeout_seconds = 180  # 设置超时时间为18秒
+    timeout_seconds = 180  
     form_model = 'player'
     form_fields = [
         'briefing_1', 'briefing_2', 'briefing_3', 'briefing_4', 'briefing_5', 'briefing_6', 'briefing_7',
@@ -190,18 +327,16 @@ class IQTest(Page):
     @staticmethod
     def vars_for_template(player):
         return {
-            'timeout_seconds': IQTest.timeout_seconds  # 传递超时时间到模板
+            'timeout_seconds': IQTest.timeout_seconds  
         }
 
     @staticmethod
     def before_next_page(player: Player, timeout_happened):
-        # 如果发生超时，为所有未回答的问题设置默认值8
         if timeout_happened:
             for field in IQTest.form_fields:
                 if player.field_maybe_none(field) is None:
                     setattr(player, field, '8')
         
-        # 计算正确答案数量
         briefing_correct_amount = 0
         for i, field in enumerate(IQTest.form_fields):
             player_answer = player.field_maybe_none(field)
@@ -235,29 +370,31 @@ class MisreportingRule(Page):
             int: One of the integers 8, 10, or 12
         """
         # The integers to cycle through
-        integers = [8, 10, 12]
+        integers = [8, 10, 12, 100]
         
         # Use the player's id_in_group to determine which integer to return
         # Subtract 1 from id_in_group since it starts from 1, not 0
-        index = (player.id_in_group - 1) % 3
+        index = (player.id_in_group - 1) % 4
         
         return integers[index]
     
-    def vars_for_template(player):
-        # 在 oTree 中，Page 类中的方法的第一个参数是 player 对象
+    def vars_for_template(self):
         return {
-            'round_robin_integer': MisreportingRule.get_round_robin_integer(player)
+            'round_robin_integer': MisreportingRule.get_round_robin_integer(self)
         }
 
 class State(Page):
     form_model = 'player'
     form_fields = ['stated_amount']
 
-
+    def vars_for_template(self):
+        return {
+            'round_robin_integer': MisreportingRule.get_round_robin_integer(self)
+        }
+    
 class Result(Page):
     @staticmethod
     def vars_for_template(player: Player):
-        # 获取 round_robin_integer 值
         threshold = MisreportingRule.get_round_robin_integer(player)
         max_bonus_points = 4  
 
@@ -272,7 +409,7 @@ class Result(Page):
             'correct_amount': player.briefing_correct_amount,
             'stated_amount': player.stated_amount,
             'payoff': player.payoff,
-            'threshold': threshold  # 也传递阈值到模板，以便在页面上显示
+            'threshold': threshold  
         }
 
 
@@ -288,7 +425,6 @@ class Survey(Page):
             if not re.match(r'^[a-zA-Z\s\.\,\!\?\;\:\-\'\"]*$', values['misreport_reason']):
                 errors['misreport_reason'] = 'Please enter only letters and punctuation'
         
-        # 如果 misreport_reason 为空，添加错误消息
         if not values['misreport_reason'].strip():
             errors['misreport_reason'] = 'This field is required'
             
@@ -304,6 +440,29 @@ class Painting(Page):
     form_model = 'player'
     form_fields = ['prefer']
    
+class Big5(Page):
+    form_model = 'player'
+    form_fields = [f'Q{i + 1}' for i in range(len(C.QUESTIONS))]
+
+
+class Comparison(Page):
+    form_model = 'player'
+    form_fields = [f'Comp{i}' for i in range(1, len(C.COMPARISON_QUESTIONS) + 1)]
+
+
+class Dictator(Page):
+    form_model = 'player'
+    form_fields = ['dictator_keep']
+    
+    def vars_for_template(self):
+        return {
+            'endowment': C.DICTATOR_ENDOWMENT
+        }
+
+
+class Info(Page):
+    form_model = 'player'
+    form_fields = ['age', 'gender', 'education', 'income', 'employment', 'occupation']
 
 page_sequence = [
     Intro,
@@ -311,8 +470,12 @@ page_sequence = [
     StatePrev,
     MisreportingRule,
     State,
-    Result,
     Survey,
     Painting,
+    Big5, 
+    Comparison, 
+    Dictator, 
+    Info, 
+    Result,
     Code
 ]
