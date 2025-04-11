@@ -411,7 +411,7 @@ class Survey(Page):
 class Code(Page):
     def vars_for_template(self):
         return {
-            'completion_code': 'C1I5TIFN'
+            'completion_code': 'C1BC94EY'
         }
     
 class Painting(Page):
