@@ -234,7 +234,7 @@ class Player(BasePlayer):
     )
 
     prefer = models.StringField(
-        label="Which painting do you prefer?",
+        label="Please select your preferred painting from the options below:",
         choices=[
             ['Left', 'Left'],
             ['Right', 'Right']
