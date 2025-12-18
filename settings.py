@@ -16,8 +16,6 @@ SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=1.00, participation_fee=0.00, doc=""
 )
 
-PARTICIPANT_FIELDS = []
-SESSION_FIELDS = []
 
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans
@@ -51,6 +49,7 @@ SESSION_CONFIGS = [
         num_demo_participants=3,
         app_sequence=['pre', 'main',"end","end2"], 
     ),
+<<<<<<< HEAD
 ]
 
 DATABASES = {
@@ -63,3 +62,6 @@ DATABASES = {
         'PORT': '4023',
     }
 }
+=======
+]
+>>>>>>> e2e3bb9641d033353645f1d052a111168045d133
