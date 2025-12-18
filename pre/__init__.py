@@ -58,18 +58,10 @@ class Preview(Page):
     form_fields = ['consent']
 
     @staticmethod
-    def vars_for_template(player: Player):
-        participant = player.participant
-        
-        if participant.label and not participant.prolific_id:
-            participant.prolific_id = participant.label
-            
-        return {}
-
-    @staticmethod
     def before_next_page(player: Player, timeout_happened):
         participant = player.participant
-    
+        
+        # 从 URL 参数获取 Prolific ID 并保存
         if participant.label:
             participant.prolific_id = participant.label
             print(f"DEBUG: Prolific ID saved: {participant.prolific_id}")
