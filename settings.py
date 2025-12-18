@@ -1,67 +1,43 @@
 from os import environ
 
+# 1. 核心配置：只保留一个 SESSION_CONFIGS
 SESSION_CONFIGS = [
     dict(
-        name='main',
-        app_sequence=[ 'pre', 'main', 'end', 'end2'],
+        name='your_experiment',
+        display_name="Your Experiment",
         num_demo_participants=30,
-    )
+        app_sequence=['pre', 'main', 'end', 'end2'],
+    ),
 ]
 
-DEBUG = False
-PRODUCTION = True
-
-
+# 2. 默认设置
 SESSION_CONFIG_DEFAULTS = dict(
-    real_world_currency_per_point=1.00, participation_fee=0.00, doc=""
+    real_world_currency_per_point=1.00, 
+    participation_fee=0.00, 
+    doc=""
 )
 
+# 3. 参与者字段（存 Prolific ID）
+PARTICIPANT_FIELDS = ['prolific_id']
+SESSION_FIELDS = []
 
-# ISO-639 code
-# for example: de, fr, ja, ko, zh-hans
+# 4. 基础设置
 LANGUAGE_CODE = 'en'
-
-# e.g. EUR, GBP, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'USD'
 USE_POINTS = False
 
+# 5. 管理员与安全
 ADMIN_USERNAME = 'admin'
-# for security, best to set admin password in an environment variable
 ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
-
-DEMO_PAGE_INTRO_HTML = """ """
-
 SECRET_KEY = '7321273217604'
+DEBUG = False
+PRODUCTION = True
 
-PARTICIPANT_FIELDS = ['prolific_id']
-
+# 6. 房间设置
 ROOMS = [
     dict(
         name='prolific_room',
         display_name='Prolific Experiment Room',
     ),
 ]
-
-SESSION_CONFIGS = [
-    dict(
-        name='your_experiment',
-        display_name="Your Experiment",
-        num_demo_participants=3,
-        app_sequence=['pre', 'main',"end","end2"], 
-    ),
-<<<<<<< HEAD
-]
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'otree_db',         # 刚才在 pgAdmin 里起的名
-        'USER': 'postgres',         # 默认都是 postgres
-        'PASSWORD': '20220602',      # 你安装软件时设置的密码
-        'HOST': '127.0.0.1', 
-        'PORT': '4023',
-    }
-}
-=======
-]
->>>>>>> e2e3bb9641d033353645f1d052a111168045d133
+DEMO_PAGE_INTRO_HTML = """ """
