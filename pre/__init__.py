@@ -58,6 +58,13 @@ class Preview(Page):
     form_fields = ['consent']
 
     @staticmethod
+    def before_next_page(player, timeout_happened):
+        participant = player.participant
+        if participant.label:
+            participant.prolific_id = participant.label
+            print(f"Prolific ID saved: {participant.label}")
+
+    @staticmethod
     def app_after_this_page(player: Player, upcoming_apps):
         if not player.consent:
             return 'end'

@@ -35,6 +35,24 @@ DEMO_PAGE_INTRO_HTML = """ """
 
 SECRET_KEY = '7321273217604'
 
+PARTICIPANT_FIELDS = ['prolific_id']
+
+ROOMS = [
+    dict(
+        name='prolific_room',
+        display_name='Prolific Experiment Room',
+    ),
+]
+
+SESSION_CONFIGS = [
+    dict(
+        name='your_experiment',
+        display_name="Your Experiment",
+        num_demo_participants=3,
+        app_sequence=['pre', 'main',"end","end2"], 
+    ),
+]
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
