@@ -34,3 +34,14 @@ ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
 DEMO_PAGE_INTRO_HTML = """ """
 
 SECRET_KEY = '7321273217604'
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'otree_db',         # 刚才在 pgAdmin 里起的名
+        'USER': 'postgres',         # 默认都是 postgres
+        'PASSWORD': '20220602',      # 你安装软件时设置的密码
+        'HOST': '127.0.0.1', 
+        'PORT': '4023',
+    }
+}
